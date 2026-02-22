@@ -25,7 +25,7 @@ public class BookController {
     this.categoryRepository = categoryRepository;
   }
 
-  @GetMapping({"/", "/books"})
+  @GetMapping({"/", "/booklist"})
     public String getBooks(Model model) {	
         model.addAttribute("books", bookRepository.findAll());
         return "/books";
