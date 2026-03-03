@@ -1,5 +1,7 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
   <link
     type="text/css"
     rel="stylesheet"
@@ -23,6 +25,15 @@
         <th></th>
         <th></th>
       </tr>
+      <div class="col-md-4" style="padding: 20px 0">
+        <form th:action="@{/logout}" method="post">
+          <input
+            type="submit"
+            value="Kirjaudu ulos"
+            class="btn btn-sm btn-danger" />
+          <h3>Käyttäjä: <span sec:authentication="name"></span></h3>
+        </form>
+      </div>
       <tr th:each="kirja : ${books}">
         <td th:text="${kirja.title}"></td>
         <td th:text="${kirja.author}"></td>
@@ -31,14 +42,15 @@
         <td th:text="${kirja.price}"></td>
         <td th:text="${kirja.category.name}"></td>
 
-        <td>
+        <td sec:authorize="hasAuthority('ADMIN')">
           <a
             th:href="@{/deleteBook/{id}(id=${kirja.id})}"
             class="btn btn-danger"
             >Poista kirja</a
           >
         </td>
-        <td>
+
+        <td sec:authorize="hasAuthority('ADMIN')">
           <a
             th:href="@{/editBook/{id}(id=${kirja.id})}"
             class="btn btn-warning">
@@ -47,6 +59,8 @@
         </td>
       </tr>
     </table>
-    <a href="/addBook" class="btn btn-success">Lisää kirja</a>
+    <td sec:authorize="hasAuthority('ADMIN')">
+      <a href="/addBook" class="btn btn-success">Lisää kirja</a>
+    </td>
   </body>
 </html>

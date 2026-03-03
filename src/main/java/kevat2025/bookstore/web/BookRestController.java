@@ -41,7 +41,7 @@ public class BookRestController {
       return bookRepository.save(book);
     }
 
-    @PutMapping("books/{id}")
+    @PutMapping("/books/{id}")
     public Book saveEditedBook(@RequestBody Book editedBook, @PathVariable Long id) {
       editedBook.setId(id);
       return bookRepository.save(editedBook);
