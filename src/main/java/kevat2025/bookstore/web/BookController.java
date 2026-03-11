@@ -38,6 +38,7 @@ public class BookController {
         return "/books";
     }
 
+  @PreAuthorize("hasAuthority('ADMIN')")
   @GetMapping("/addBook")
     public String addBook(Model model){
     	model.addAttribute("book", new Book());

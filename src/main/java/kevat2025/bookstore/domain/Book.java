@@ -2,6 +2,7 @@ package kevat2025.bookstore.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,7 +16,7 @@ import jakarta.validation.constraints.Size;
 public class Book {
 
 @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 
 @NotEmpty(message = "Kirjan nimi ei voi olla tyhjä.")
@@ -23,13 +24,15 @@ private Long id;
 
   private String title;
   private String author;
+
+  @Column(name = "publication_year")
   private int publicationYear;
   private String isbn;
   private double price;
 
   @JsonIgnoreProperties("books")
   @ManyToOne
-  @JoinColumn(name = "categoryid")
+  @JoinColumn(name = "category_id")
   private Category category;
   
 
@@ -41,6 +44,7 @@ private Long id;
   public Book(String title, String author, int publicationYear, String isbn, double price, Category category) {
     this.title = title;
     this.author = author;
+
     this.publicationYear = publicationYear;
     this.isbn = isbn;
     this.price = price;

@@ -14,8 +14,8 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Category {
 @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private Long categoryid;
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 private String name;
 
 @JsonIgnoreProperties("category")
@@ -31,11 +31,11 @@ public Category(String name) {
 }
 
 public Long getCategoryid() {
-  return categoryid;
+  return id;
 }
 
-public void setCategoryid(Long categoryid) {
-  this.categoryid = categoryid;
+public void setCategoryid(Long id) {
+  this.id = id;
 }
 
 public String getName() {
@@ -56,6 +56,6 @@ public void setBooks(List<Book> books) {
 
 @Override
 public String toString() {
-  return "Category [categoryid=" + categoryid + ", name=" + name + "]";
+  return "Category [id=" + id + ", name=" + name + "]";
 }
 }

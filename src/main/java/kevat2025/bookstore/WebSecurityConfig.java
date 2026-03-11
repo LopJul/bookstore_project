@@ -31,7 +31,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/books/**").permitAll()
                 .anyRequest().authenticated())
                 // Käyttää HTTP Basic -autentikointia oletusasetuksilla (Postman)
-                .httpBasic(Customizer.withDefaults())
+                        .httpBasic(Customizer.withDefaults())
                 .headers(headers ->
                     headers.frameOptions(frameOptions -> frameOptions
                         .disable())) // for h2console

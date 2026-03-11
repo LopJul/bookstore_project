@@ -47,6 +47,7 @@ public class BookRestController {
       return bookRepository.save(editedBook);
     }
 
+
     @DeleteMapping("/books/{id}")
     public Iterable<Book> deleteBook (@PathVariable Long id) {
       System.out.println("poistettavan kirjan id " + id);
