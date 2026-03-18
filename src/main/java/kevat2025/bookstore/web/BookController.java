@@ -35,7 +35,7 @@ public class BookController {
   @GetMapping({"/", "/booklist"})
     public String getBooks(Model model) {	
         model.addAttribute("books", bookRepository.findAll());
-        return "/books";
+        return "books";
     }
 
   @PreAuthorize("hasAuthority('ADMIN')")
@@ -43,7 +43,7 @@ public class BookController {
     public String addBook(Model model){
     	model.addAttribute("book", new Book());
       model.addAttribute("categories", categoryRepository.findAll());
-        return "/addBook";
+        return "addBook";
     }
 
   @PostMapping("/save")
